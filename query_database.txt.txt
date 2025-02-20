@@ -1,0 +1,73 @@
+CREATE DATABASE absen_app;
+
+-- Gunakan database yang baru saja dibuat
+USE absen_app;
+
+-- Membuat tabel jabatan
+CREATE TABLE jabatan (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    jabatan VARCHAR(225) NOT NULL
+);
+
+-- Membuat tabel pegawai
+CREATE TABLE pegawai (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    nip VARCHAR(50) NOT NULL,
+    nama VARCHAR(225) NOT NULL,
+    jenis_kelamin VARCHAR(50) NOT NULL,
+    alamat VARCHAR(225),
+    no_handphone VARCHAR(50),
+    jabatan VARCHAR(50),
+    lokasi_presensi VARCHAR(225),
+    foto VARCHAR(223)
+);
+
+-- Membuat tabel lokasi_presensi
+CREATE TABLE lokasi_presensi (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    nama_lokasi VARCHAR(225) NOT NULL,
+    alamat_lokasi VARCHAR(225),
+    tipe_lokasi VARCHAR(50),
+    latitude VARCHAR(50),
+    longitude VARCHAR(50),
+    radius INT(11),
+    zona_waktu VARCHAR(4),
+    jam_masuk TIME,
+    jam_pulang TIME
+);
+
+-- Membuat tabel users
+CREATE TABLE users (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    id_pegawai INT(11),
+    username VARCHAR(225) NOT NULL,
+    password VARCHAR(225) NOT NULL,
+    status VARCHAR(225),
+    role VARCHAR(225),
+    FOREIGN KEY (id_pegawai) REFERENCES pegawai(id)
+);
+
+-- Membuat tabel presensi
+CREATE TABLE presensi (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    id_pegawai INT(11),
+    tanggal_masuk DATE,
+    jam_masuk TIME,
+    foto_masuk VARCHAR(225),
+    tanggal_keluar DATE,
+    jam_keluar TIME,
+    foto_keluar VARCHAR(225),
+    FOREIGN KEY (id_pegawai) REFERENCES pegawai(id)
+);
+
+-- Membuat tabel ketidakhadiran
+CREATE TABLE ketidakhadiran (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    id_pegawai INT(11),
+    keterangan VARCHAR(225),
+    tanggal DATE,
+    deskripsi VARCHAR(225),
+    file VARCHAR(225),
+    status_pengajuan VARCHAR(50),
+    FOREIGN KEY (id_pegawai) REFERENCES pegawai(id)
+);
