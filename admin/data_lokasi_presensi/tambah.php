@@ -90,11 +90,11 @@ if (isset($_POST['submit'])) {
                 <option value="">--Pilih Tipe Lokasi--</option>
                 <option <?php if (isset($_POST['tipe_lokasi']) && $_POST['tipe_lokasi'] == 'Pusat') {
                 echo 'selected';
-              } ?> value="Pusat">Pusat</option>
+              } ?> value="Pusat">Kantor</option>
 
               <option <?php if (isset($_POST['tipe_lokasi']) && $_POST['tipe_lokasi'] == 'Cabang') {
                 echo 'selected';
-              } ?> value="Cabang">Cabang</option>
+              } ?> value="Cabang">Sekolah</option>
             </select>
           </div>
 
